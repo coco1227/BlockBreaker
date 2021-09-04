@@ -1,14 +1,14 @@
 package riko.uchida;
 
+import processing.core.PApplet;
+
 class Ball {
-    private final Main main;
     int x;
     int y;
     int dx;
     int dy;
 
-    Ball(Main main) {
-        this.main = main;
+    Ball() {
         x = 250;
         y = 50;
         dx = 1;
@@ -16,17 +16,17 @@ class Ball {
     }
 
 
-    public void update() {
+    public void update(PApplet pApplet) {
         x = x + dx;
         y = y + dy;
 
-        if (x > main.width || x < 0) dx *= -1;
+        if (x > pApplet.width || x < 0) dx *= -1;
         if (y > 480 || y + dy < 0) dy *= -1;
     }
 
-    public void draw() {
-        main.strokeWeight(10);
-        main.stroke(255);
-        main.point(x, y);
+    public void draw(PApplet pApplet) {
+        pApplet.strokeWeight(10);
+        pApplet.stroke(255);
+        pApplet.point(x, y);
     }
 }

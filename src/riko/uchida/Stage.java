@@ -1,23 +1,23 @@
 package riko.uchida;
 
+import processing.core.PApplet;
+
 class Stage {
-    private final Main main;
     Ball ball;
     Paddle paddle = new Paddle();
 
-    public Stage(Main main) {
-        this.main = main;
-        ball = new Ball(main);
+    public Stage() {
+        ball = new Ball();
     }
 
-    public void draw() {
-        main.background(128);
-        ball.draw();
-        paddle.draw();
+    public void draw(PApplet pApplet) {
+        pApplet.background(128);
+        ball.draw(pApplet);
+        paddle.draw(pApplet);
     }
 
-    public void update() {
-        ball.update();
-        paddle.update();
+    public void update(PApplet pApplet) {
+        ball.update(pApplet);
+        paddle.update(pApplet);
     }
 }
