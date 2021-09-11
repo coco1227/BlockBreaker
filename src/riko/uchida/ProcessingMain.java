@@ -12,7 +12,6 @@ public class ProcessingMain extends PApplet {
 
     @Override
     public void setup() {
-
     }
 
     @Override

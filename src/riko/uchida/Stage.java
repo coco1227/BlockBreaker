@@ -3,11 +3,15 @@ package riko.uchida;
 import processing.core.PApplet;
 
 class Stage {
-    Ball ball;
+    Ball ball = new Ball();
     Paddle paddle = new Paddle();
 
     public Stage() {
-        ball = new Ball();
+    }
+
+    public void update(PApplet pApplet) {
+        ball.update(pApplet);
+        paddle.update(pApplet);
     }
 
     public void draw(PApplet pApplet) {
@@ -16,8 +20,4 @@ class Stage {
         paddle.draw(pApplet);
     }
 
-    public void update(PApplet pApplet) {
-        ball.update(pApplet);
-        paddle.update(pApplet);
-    }
 }
