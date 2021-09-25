@@ -2,7 +2,7 @@ package riko.uchida;
 
 import processing.core.PApplet;
 
-class Ball {
+class Ball implements Collision{
     int x;
     int y;
     int dx;
@@ -24,9 +24,20 @@ class Ball {
         if (y > 480 || y + dy < 0) dy *= -1;
     }
 
+
     public void draw(PApplet pApplet) {
         pApplet.strokeWeight(10);
         pApplet.stroke(255);
         pApplet.point(x, y);
+    }
+
+    @Override
+    public boolean isHit(int x, int y) {
+        return false;
+    }
+
+    @Override
+    public void onAction(int x, int y) {
+        this.dy = this.dy*-1;
     }
 }

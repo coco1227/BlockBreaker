@@ -15,15 +15,10 @@ class Stage {
         int bx = ball.x + ball.dx;
         int by = ball.y + ball.dy;
 
-        int px = paddle.x;
-        int py = paddle.y;
-        int pw = paddle.w;
-        int ph = paddle.h;
-        //px < bx < (px+pw)
-        //py < by < (py+ph)
-        if(px < bx && bx < (px+pw) && py < by && py< (py+ph)){
-            ball.dy = ball.dy*-1;
+        if(paddle.isHit(bx, by)){
+            ball.onAction(paddle.x, paddle.y);
         }
+
     }
 
     public void draw(PApplet pApplet) {
@@ -31,5 +26,6 @@ class Stage {
         ball.draw(pApplet);
         paddle.draw(pApplet);
     }
+
 
 }

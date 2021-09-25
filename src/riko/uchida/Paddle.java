@@ -4,7 +4,7 @@ import processing.core.PApplet;
 
 import static processing.core.PConstants.RADIUS;
 
-class Paddle {
+class Paddle implements Collision{
     int x = 255;
     int y = 450;
     int w = 50;
@@ -22,5 +22,18 @@ class Paddle {
             if (pApplet.keyCode == 37) x -= 5;
             if(pApplet.keyCode == 39) x += 5;
         }
+    }
+
+    @Override
+    public boolean isHit(int x, int y) {
+        if(this.x<x && x<(this.x + this.w)&&this.y<y&&y<(this.y+h)){
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public void onAction(int x, int y) {
+
     }
 }
