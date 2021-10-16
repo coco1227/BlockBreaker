@@ -43,7 +43,7 @@ class Stage {
         for(int i=0; i<blocks.size(); i++){
             Block o = blocks.get(i);
             if(o.isHit(bx, by)){
-                ball.onAction(o.x, o.y);
+                ball.onAction(o.bx, o.by);
             }
         }
         ball.update(pApplet);
