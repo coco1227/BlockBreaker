@@ -2,13 +2,12 @@ package riko.uchida;
 
 import processing.core.PApplet;
 
-class Ball implements Collision{
-    int x;
-    int y;
+class Ball extends DrawObject {
     int dx;
     int dy;
 
     Ball() {
+        super(250, 50);
         x = 250;
         y = 50;
         dx = 1;
@@ -16,6 +15,7 @@ class Ball implements Collision{
     }
 
 
+    @Override
     public void update(PApplet pApplet) {
         x = x + dx;
         y = y + dy;
@@ -25,15 +25,11 @@ class Ball implements Collision{
     }
 
 
+    @Override
     public void draw(PApplet pApplet) {
         pApplet.strokeWeight(10);
         pApplet.stroke(255);
         pApplet.point(x, y);
-    }
-
-    @Override
-    public boolean isHit(int x, int y) {
-        return false;
     }
 
     @Override

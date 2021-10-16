@@ -6,12 +6,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 class Stage {
-    Ball ball = new Ball();
-    Paddle paddle = new Paddle();
-    List<Block> blocks = new ArrayList<>();
-
+    DrawObject ball;
+    List<DrawObject> drawableObjects = new ArrayList<>();
 
     public Stage(PApplet pApplet) {
+        ball = new Ball();
+        drawableObjects.add(ball);
+
+        Paddle paddle = new Paddle();
+        drawableObjects.add(paddle);
+
+        //ブロックを生成する処理
         int width = pApplet.width;
         int height = pApplet.height;
 
@@ -26,7 +31,7 @@ class Stage {
         int startXPos = halfSpace;
         for(int i=0; i<n; i++){
             Block block = new Block(startXPos,halfSpace);
-            blocks.add(block);
+            drawableObjects.add(block);
             startXPos = startXPos + (BW+BG);
         }
 
@@ -34,30 +39,27 @@ class Stage {
     }
 
     public void update(PApplet pApplet) {
-        int bx = ball.x + ball.dx;
-        int by = ball.y + ball.dy;
+        for(int i = 0; i< drawableObjects.size(); i++){
+            DrawObject o = drawableObjects.get(i);
+            o.update(pApplet);
 
-        if(paddle.isHit(bx, by)){
-            ball.onAction(paddle.x, paddle.y);
-        }
-        for(int i=0; i<blocks.size(); i++){
-            Block o = blocks.get(i);
-            if(o.isHit(bx, by)){
-                ball.onAction(o.bx, o.by);
+            if(o instanceof Collision){
+                Collision collision = (Collision) o;
+
+                if(collision.isHit(ball.x, ball.y)){
+                    System.out.println("onHit");
+                    ball.onAction(o.x, o.y);
+                }
             }
         }
-        ball.update(pApplet);
-        paddle.update(pApplet);
     }
 
     public void draw(PApplet pApplet) {
         pApplet.background(128);
-        ball.draw(pApplet);
-        paddle.draw(pApplet);
-        for(int i=0; i<blocks.size(); i++){
-            Block o = blocks.get(i);
-            o.draw(pApplet);
 
+        for(int i = 0; i< drawableObjects.size(); i++){
+            DrawObject o = drawableObjects.get(i);
+            o.draw(pApplet);
         }
 
     }

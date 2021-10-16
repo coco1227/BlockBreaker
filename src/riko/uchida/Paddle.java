@@ -4,12 +4,16 @@ import processing.core.PApplet;
 
 import static processing.core.PConstants.RADIUS;
 
-class Paddle implements Collision{
-    int x = 255;
-    int y = 450;
+class Paddle extends DrawObject implements Collision{
     int w = 50;
     int h = 10;
 
+    public Paddle(){
+        super(255, 450);
+    }
+
+
+    @Override
     public void draw(PApplet pApplet) {
         pApplet.noStroke();
         pApplet.fill(255,255,255);
@@ -17,6 +21,7 @@ class Paddle implements Collision{
 
     }
 
+    @Override
     public void update(PApplet pApplet) {
         if(pApplet.keyPressed){
             if (pApplet.keyCode == 37) x -= 5;
